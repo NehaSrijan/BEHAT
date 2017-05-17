@@ -1,0 +1,29 @@
+default:
+  #formatters:
+   #    progress:
+   #    junit: [ci/build/behat/junit]
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+  #formatters:
+   #pretty: true
+   #html:
+     #output_path: %paths.base%/build/html
+  extensions:
+    Behat\MinkExtension:
+      goutte:
+        guzzle_parameters:
+            verify: false
+      browser_name: chrome
+      selenium2:
+        wd_host: "http://127.0.0.1:8643/wd/hub"
+      javascript_session: selenium2
+      base_url: "http://automationpractice.com"
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: "drupal"
